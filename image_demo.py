@@ -3,7 +3,7 @@ import time
 import argparse
 import os
 import torch
-
+import pandas as pd
 import posenet
 
 
@@ -20,6 +20,8 @@ def main():
     model = posenet.load_model(args.model)
     model = model.cuda()
     output_stride = model.output_stride
+
+    pose_list=[]
 
     if args.output_dir:
         if not os.path.exists(args.output_dir):
@@ -63,9 +65,18 @@ def main():
                 if pose_scores[pi] == 0.:
                     break
                 print('Pose #%d, score = %f' % (pi, pose_scores[pi]))
-                for ki, (s, c) in enumerate(zip(keypoint_scores[pi, :], keypoint_coords[pi, :, :])):
-                    print('Keypoint %s, score = %f, coord = %s' % (posenet.PART_NAMES[ki], s, c))
+                each_pose=[]
+                if pose_scores[pi]>0.4 :
+                    for ki, (s, c) in enumerate(zip(keypoint_scores[pi, :], keypoint_coords[pi, :, :])):
+                        each_pose.append(c)
 
+                #for ki, (s, c) in enumerate(zip(keypoint_scores[pi, :], keypoint_coords[pi, :, :])):
+                    #print('Keypoint %s, score = %f, coord = %s' % (posenet.PART_NAMES[ki], s, c))
+                print(each_pose)
+                pose_list.append(each_pose)
+
+
+    print(pose_list)
     print('Average FPS:', len(filenames) / (time.time() - start))
 
 

@@ -64,9 +64,9 @@ def main():
             for pi in range(len(pose_scores)):
                 if pose_scores[pi] == 0.:
                     break
-                print('Pose #%d, score = %f' % (pi, pose_scores[pi]))
+                #print('Pose #%d, score = %f' % (pi, pose_scores[pi]))
                 each_pose=[]
-                if pose_scores[pi]>0.4 :
+                if pose_scores[pi]>0.2 :
                     for ki, (s, c) in enumerate(zip(keypoint_scores[pi, :], keypoint_coords[pi, :, :])):
                         each_pose.append(c)
 

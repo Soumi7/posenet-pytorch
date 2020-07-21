@@ -28,7 +28,7 @@ def main():
             os.makedirs(args.output_dir)
 
     filenames = [
-        f.path for f in os.scandir(args.image_dir) if f.is_file() and f.path.endswith(('.png', '.jpg'))]
+        f.path for f in os.scandir(args.image_dir) if f.is_file() and f.path.endswith(('.png', '.jpg','.jpeg'))]
 
     start = time.time()
     for f in filenames:

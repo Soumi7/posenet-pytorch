@@ -9,7 +9,7 @@ DEBUG_OUTPUT = False
 
 
 def load_model(model_id, output_stride=16, model_dir=MODEL_DIR):
-    model_path = os.path.join(model_dir, MOBILENET_V1_CHECKPOINTS[model_id] + '.pth')
+    model_path = os.path.join(model_dir, MOBILENET_V1_CHECKPOINTS[model_id] + '.py')
     if not os.path.exists(model_path):
         print('Cannot find models file %s, converting from tfjs...' % model_path)
         from posenet.converter.tfjs2pytorch import convert

@@ -4,7 +4,7 @@ import os
 
 from posenet.models.mobilenet_v1 import MobileNetV1, MOBILENET_V1_CHECKPOINTS
 
-MODEL_DIR = './_models'
+MODEL_DIR = './models'
 DEBUG_OUTPUT = False
 
 
